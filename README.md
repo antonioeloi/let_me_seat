@@ -7,7 +7,10 @@ Each user/browser (no authentication or user account required) views a map of th
 
 As soon as a user selects a seat, it should appear as light red to all other users. When a user reserves their selected seats, these seats should appear as red. This should happen in real-time, without the need to reload the page, and with minimal latency.
 
-Associated with the seat map, on the same page, is a "cart" displaying the selected seats. Each seat has an associated price and is added/removed from the cart without needing to refresh the page. The cart is always updated with the selected seats and displays the total amount payable. For this part, we suggest developing a Stimulus controller.
+Associated with the seat map, on the same page, is a "cart" displaying the selected seats. Each seat has an associated price and is added/removed from the cart without needing to refresh the page. The cart is always updated with the selected seats and displays the total amount payable. For this part, it was suggest developing a Stimulus controller.
+
+## Quick demo
+![demo.gif](demo.gif)
 
 ## How to Run the Project
 1. Clone the repository:
