@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>LetMeSeat</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+
+    <style>
+      <%= ".my-seat-#{session[:cart_id]}" %> {
+          background-color: grey !important;
+      }
+    </style>
+
+    <script type="text/javascript">
+      var sessionId = "<%= session[:cart_id] %>";
+    </script>
+  </head>
+
+  <body>
+    <%= yield %>
+    <%= render 'cart/cart' if @render_cart%>
+  </body>
+</html>

@@ -1,0 +1,16 @@
+@import 'bootstrap/scss/bootstrap';
+@import 'bootstrap-icons/font/bootstrap-icons';
+
+.seat-state {
+  &_free {
+    background-color: green;
+  }
+
+  &_selected {
+    background-color: #FF6347;
+  }
+
+  &_reserved {
+    background-color: red;
+  }
+}
