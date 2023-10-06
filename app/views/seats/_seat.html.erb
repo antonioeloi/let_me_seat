@@ -1,0 +1,7 @@
+<div id="<%= dom_id seat %>">
+  <div class="border rounded-circle text-center <%= 'seat-state_' + seat.state %> <%= "my-seat-"+seat.cart_id.to_s if seat.selected? %>" style="width: 40px; height: 40px; line-height: 30px;">
+    <%= form_with url: seat_path(seat), method: :put, remote: true do %>
+      <%= submit_tag seat.id, class: 'btn btn-link', disabled: seat.reserved?, 'data-action': 'click->cart#update', 'data-seat-state': seat.state, 'data-seat-cost': seat.cost %>
+  <% end %>
+  </div>
+</div>

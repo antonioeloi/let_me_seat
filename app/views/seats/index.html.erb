@@ -1,0 +1,41 @@
+<%= turbo_stream_from "seats"%>
+
+<div class="container">
+  <p style="color: green"><%= notice %></p>
+  <p style="color: red"><%= alert %></p>
+</div>
+
+
+<div data-controller="cart">
+  <div class="container">
+    <h1>Seats</h1>
+    <div id="seats">
+      <% @seats.group_by(&:row).sort.each do |row, seats_in_row| %>
+        <div class="d-flex justify-content-start mb-3">
+          <% seats_in_row.sort_by(&:column).each do |seat| %>
+            <div class="p-2"><%= render "seat", seat:, updater_id: @cart.id %> </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="container">
+    <h2>Cart</h2>
+    <ul class="list-group mt-3">
+      <turbo-frame id="selected_seats">
+        <% @cart.seats.sort.each do |seat| %>
+          <%= render "cart_item", seat: %>
+        <% end %>
+      </turbo-frame>
+
+    </ul>
+    <div>
+      <p>Total: <span data-cart-target="total"><%= @cart.seats.sum(&:cost) %></span></p>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+    <%= render "reserve_btn", count: @cart.seats.count %>
+</div>

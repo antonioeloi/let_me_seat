@@ -1,0 +1,6 @@
+<turbo-frame id="reserve_btn" target="_top">
+  <%= form_with url: reserve_path, method: :put do %>
+      <%= submit_tag 'Reserve', class: "btn btn-primary", disabled: !count.positive? %>
+    <% end %>
+</turbo-frame>
+
