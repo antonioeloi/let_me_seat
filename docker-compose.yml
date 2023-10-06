@@ -1,0 +1,46 @@
+version: '3'
+services:
+  db:
+    image: postgres:14.2-alpine
+    container_name: let_me_seat-postgres-14.2
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    environment:
+      - REDIS_URL=${REDIS_URL}
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    ports:
+      - "5432:5432"
+  web:
+    build: .
+    command: >
+      bash -c "bundle exec rake db:drop db:create &&
+      bundle exec rake db:migrate &&
+      bundle exec rake db:seed &&
+      ./bin/rails server -b 0.0.0.0"
+    environment:
+      - RAILS_ENV=${RAILS_ENV}
+      - REDIS_URL=${REDIS_URL}
+      - POSTGRES_HOST=${POSTGRES_HOST}
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    volumes:
+      - app-storage:/rails/storage
+    depends_on:
+      - db
+      - redis
+    ports:
+      - "3000:3000"
+  redis:
+    image: redis:6
+    volumes:
+      - redisdata:/data
+    ports:
+      - "6379:6379"
+
+volumes:
+  pgdata:
+  app-storage:
+  redisdata:

@@ -10,14 +10,19 @@ As soon as a user selects a seat, it should appear as light red to all other use
 Associated with the seat map, on the same page, is a "cart" displaying the selected seats. Each seat has an associated price and is added/removed from the cart without needing to refresh the page. The cart is always updated with the selected seats and displays the total amount payable. For this part, we suggest developing a Stimulus controller.
 
 ## How to Run the Project
-1. Clone the repository using `git clone <repository-url>`.
-2. Navigate into the project directory.
-3. Run the setup script with `./bin/setup`. This script will:
-    - Install the necessary dependencies.
-    - Prepare the database and run seeds.
-    - Clear old logs and temp files.
-4. Ensure that Redis is running on the default port.
-5. Start your server using `. bin/dev`.
+1. Clone the repository:
+```bash
+git clone https://github.com/antonioeloi/let_me_seat
+```
+2. Navigate into the project directory:
+```bash
+cd let_me_seat
+```
+3. Build and run the docker image:
+```bash
+docker-compose up --build
+```
+4. Visit `http://localhost:3000` in your browser to see the app.
 
 ## Technical Remarks
 - Selected seats by other users appear light red but are still clickable. Clicking affects the cart list but doesn't update the seat because it's selected by another user. An improvement could be to disable clicking for those seats but it's not relevant to this challenge.
